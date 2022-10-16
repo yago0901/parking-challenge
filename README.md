@@ -65,19 +65,16 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 ```bash
 
 # Clone este repositório
-$ git clone git@github.com:tgmarinho/README-ecoleta.git
-
-# Acesse a pasta do projeto no seu terminal/cmd
-$ cd README-ecoleta
+$ git clone github.com/yago0901/parking-challenge.git
 
 # Vá para a pasta da aplicação Front End
-$ cd web
+$ cd parking-challenge
 
 # Instale as dependências
 $ npm install
 
 # Execute a aplicação em modo de desenvolvimento
-$ npm run start
+$ npm start
 
 # A aplicação será aberta na porta:3000 - acesse http://localhost:3000
 
@@ -89,7 +86,7 @@ $ npm run start
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Website** ([React](https://reactjs.org/) + [Styled Compenent](https://styled-components.com/) + [React Boostrap](https://react-bootstrap.github.io/) )
+#### **Desenvolvedor React** <br/> ([React](https://reactjs.org/) + [Styled Compenent](https://styled-components.com/) + [React Boostrap](https://react-bootstrap.github.io/) )
 
 - **[Axios](https://github.com/axios/axios)**
 
