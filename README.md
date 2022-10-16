@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+<h4 align="center"> 
+	Parking 🚧 Challenge
+</h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-layout">Layout</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-autor">Autor</a> • 
+ <a href="#user-content--licença">Licença</a>
+</p>
 
-## Available Scripts
+## 💻 Sobre o projeto
 
-In the project directory, you can run:
+Parking 🚧 Challenge - é um projeto que testa as habilidades de Front-End indo desde a crição das páginas até a comunicação com a api.
 
-### `npm start`
+Projeto com prazo de 7 dias.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ⚙️ Funcionalidades
 
-### `npm test`
+- [x] Entrada de veículo:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - [x] Placa
 
-### `npm run build`
+- [x] Saída de veículo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - [x] Pagamento
+    - [x] Valor
+    - [x] Horário
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] Histórico:
+  - [x] Placa
+  - [x] Tempo total
+  - [x] Pagamento
+  - [x] Tempo atual
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🎨 Layout
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+O layout da aplicação está disponível no Figma:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<a href="https://www.figma.com/file/26jpN1RoqRXT5LlHIGUyaq/Layout-Parking-Challenge?node-id=0%3A66">
+  <p>FIGMA</p>
+</a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🚀 Como executar o projeto
 
-## Learn More
+Frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Pré-requisitos
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-### Code Splitting
+#### 🧭 Rodando a aplicação web (Frontend)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
 
-### Analyzing the Bundle Size
+# Clone este repositório
+$ git clone git@github.com:tgmarinho/README-ecoleta.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd README-ecoleta
 
-### Making a Progressive Web App
+# Vá para a pasta da aplicação Front End
+$ cd web
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Instale as dependências
+$ npm install
 
-### Advanced Configuration
+# Execute a aplicação em modo de desenvolvimento
+$ npm run start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
 
-### Deployment
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🛠 Tecnologias
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+As seguintes ferramentas foram usadas na construção do projeto:
+
+#### **Website** ([React](https://reactjs.org/) + [Styled Compenent](https://styled-components.com/) + [React Boostrap](https://react-bootstrap.github.io/) )
+
+- **[Axios](https://github.com/axios/axios)**
+
+---
+
+## 🦸 Autor
+
+<a href="https://github.com/yago0901">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/52417033?v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Yago Gigeck</b></sub></a> <a href="https://yago0901.github.io/yago-desenvolvedor-site/" title="Desenvolvedor React"></a>
+ <br />
+
+---
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito por Yago 👋🏽 [Entre em contato!](https://www.linkedin.com/in/yagogigeck/)
+
+---
