@@ -10,5 +10,5 @@ export const StyledInput = styled.input`
 
   font-family: OpenSans;
   font-size: 33px;
-  text-align: Center;
+  text-align: center;
 `;

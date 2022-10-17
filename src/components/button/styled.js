@@ -13,5 +13,5 @@ export const StyledButton = styled.button`
   }
   font-family: OpenSans;
   font-size: 15px;
-  text-align: Center;
+  text-align: center;
 `;

@@ -60,4 +60,28 @@ export const Typography = styled.p`
   font-size: ${(props) => props.size || "16px"};
   line-height: ${(props) => (props.primary ? "#4DD0E1" : "#9B9B9B")};
   color: ${(props) => props.color || "#A769B2"};
+  text-align: ${(props) => props.textAlign || "center"};
+`;
+
+export const CardGeral = styled.div`
+  width: 344px;
+  height: 100%;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px #9b9b9b;
+`;
+
+export const CardDesc = styled.div`
+  height: 67px;
+  width: 312px;
+  padding-top: 10%;
+`;
+
+export const Rules = styled.button`
+  width: 100%;
+  font-weight: 700;
+  font-size: ${(props) => props.size || "16px"};
+  line-height: 24px;
+  background: transparent;
+  color: ${(props) => props.color || "#ececec"}; ;
 `;
