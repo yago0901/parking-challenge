@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Entrada from "./components/Entrada/Entrada";
-import Saida from "./components/Saida/Saida";
-import Data from "./components/Data/Data";
+import Entrada from "./components/pages/Entrada/Entrada";
+import Saida from "./components/pages/Saida/Saida";
+import Data from "./components/pages/data/Data";
+import { useState } from "react";
 
 export default function App() {
   return (

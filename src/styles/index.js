@@ -44,10 +44,12 @@ export const Container = styled.div`
 export const Flex = styled.div`
   display: flex;
   width: 100%;
-  align-items: ${(props) => props.aling || "center"};
+  align-items: ${(props) => props.align || "center"};
   justify-content: ${(props) => props.justify || "center"};
   flex-direction: ${(props) => props.direction || "row"};
   gap: ${(props) => props.gap || "16px"};
+  margin-left: ${(props) => props.marginLeft || "0px"};
+  margin-top: ${(props) => props.marginTop || "0px"};
 `;
 
 export const Spacer = styled.div`
