@@ -1,99 +1,74 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import * as C from "../../../styles";
-import "./Data.css";
-import NavbarComp from "../../navbar";
-import { Button, Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Modal } from "../../modal";
+import React, { useState, useEffect } from "react";
+import {
+  DataBg,
+  Plate,
+  BackDetail,
+  PlateDiv,
+  Loading,
+  LoadingText,
+  LinkStyle,
+} from "./styles";
+
 import axios from "axios";
-import { Button1 } from "../../button";
+import { Link } from "react-router-dom";
+
+import BackArrow from "../../../assets/arrow_l.svg";
+import LoadingImage from "../../../assets/loading.svg";
+
+import Header from "../../../components/Header";
+import Card from "../../../components/Card";
 
 export default function Data() {
-  const [titleModal, settitleModal] = useState("mensagem");
-  const [messageModal, setmessageModal] = useState("mensagem2");
-  const [open, setOpen] = useState(false);
-
-  const [hist, setHist] = useState([]);
+  const [carsData, setCarsData] = useState();
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramPlate = urlParams.get("plate");
 
   useEffect(() => {
-    axios
-      .get("https://parking-lot-to-pfz.herokuapp.com/parking/AaA-4444")
-      .then((response) => {
-        setHist(response.data);
-      })
-
-      .catch(() => {
-        console.log("Deu tudo errado");
-      });
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramPlate = urlParams.get("plate");
+    let getCars = async () => {
+      let res = await axios
+        .get(`https://parking-lot-to-pfz.herokuapp.com/parking/${paramPlate}`)
+        .catch((err) => {
+          alert("insira um dado valido");
+          console.error("ops! ocorreu um erro" + err);
+        });
+      setCarsData(res.data);
+    };
+    getCars();
   }, []);
 
-  let histCar = hist.filter(function (e) {
-    return e.reservation === 62e319;
-  });
-
-  return (
-    <C.Container className="App">
-      <NavbarComp />
-      <center>
-        <C.Flex>
-          <Container className="App-box">
-            <Modal titleModal={titleModal} messageModal={messageModal} />
-            <C.Spacer margin="25px" />
-            <C.CardGeral>
-              <C.CardDesc>
-                <Link to="/saida">
-                  <C.Rules
-                    size="15px"
-                    color="#000000"
-                    onClick={() => setOpen(true)}
-                  >
-                    Voltar
-                  </C.Rules>
-                </Link>
-                {hist.map((hist, key) => {
-                  return (
-                    <Button1 bgColor="tranparent" color="black" key={key}>
-                      <C.Flex gap="0px" marginLeft="15px">
-                        <C.Flex gap="0px" direction="column">
-                          <C.Flex
-                            marginLeft="15px"
-                            marginTop="0px"
-                            justify="start"
-                          >
-                            <C.Typography size="12px" color="#9B9B9B">
-                              Tempo atual
-                            </C.Typography>
-                          </C.Flex>
-                          <C.Flex
-                            marginLeft="15px"
-                            marginTop="0px"
-                            justify="start"
-                          >
-                            {hist.time}
-                          </C.Flex>
-                        </C.Flex>
-                        <C.Flex gap="0px" direction="column">
-                          <C.Flex
-                            marginLeft="15px"
-                            marginTop="0px"
-                            justify="start"
-                          >
-                            <C.Typography size="12px" color="#9B9B9B">
-                              Pagamento
-                            </C.Typography>
-                          </C.Flex>
-                          <C.Flex justify="start">{hist.plate}</C.Flex>
-                        </C.Flex>
-                      </C.Flex>
-                    </Button1>
-                  );
-                })}
-              </C.CardDesc>
-            </C.CardGeral>
-          </Container>
-        </C.Flex>
-      </center>
-    </C.Container>
-  );
+  if (carsData) {
+    return (
+      <div className="container">
+        <DataBg>
+          <Header />
+          <Link to={`/saida`} style={LinkStyle}>
+            <PlateDiv>
+              <BackDetail src={BackArrow} />
+              <Plate> Placa {carsData[0].plate}</Plate>
+            </PlateDiv>
+          </Link>
+          <ul>
+            {carsData.map((car, index) => (
+              <Card
+                key={index}
+                plate={carsData[0].plate}
+                time={car.time}
+                paid={car.paid}
+                reservation={car.reservation}
+              />
+            ))}
+          </ul>
+        </DataBg>
+      </div>
+    );
+  } else {
+    return (
+      <Loading data-testid="loading">
+        <img src={LoadingImage} alt="" />
+        <LoadingText>Carregando..</LoadingText>
+      </Loading>
+    );
+  }
 }

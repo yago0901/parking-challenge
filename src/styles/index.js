@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { /*styled,*/ createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 *{
@@ -35,7 +35,7 @@ button{
 
 `;
 
-export const Container = styled.div`
+/*export const Container = styled.div`
   min-width: 100vw;
   height: 100vh;
   background-color: #f2f2f2;
@@ -86,4 +86,4 @@ export const Rules = styled.button`
   line-height: 24px;
   background: transparent;
   color: ${(props) => props.color || "#ececec"}; ;
-`;
+`;*/

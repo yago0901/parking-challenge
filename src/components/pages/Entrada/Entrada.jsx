@@ -1,61 +1,130 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import * as C from "../../../styles";
-import "./Entrada.css";
-import NavbarComp from "../../navbar";
-import { Button, Container } from "react-bootstrap";
-import { Input } from "../../input";
-import { Button1 } from "../../button";
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { Modal } from "../../modal";
 
-export default function Entrada() {
-  const [placa, setPlaca] = useState([]);
-  const [titleModal, settitleModal] = useState("mensagem");
-  const [messageModal, setmessageModal] = useState("mensagem2");
-  const [open, setOpen] = useState(false);
+import Modal from "react-modal";
+import {
+  Main,
+  Toggle,
+  ToggleItem,
+  LinkStyle,
+  ContainerInput,
+  Label,
+  Input,
+  Button,
+  Error,
+  ModalStyle,
+  ModalText,
+} from "./styles";
+import Header from "../../../components/Header";
+import Success from "../../../assets/round-done-button.svg";
+import Alert from "../../../assets/ic_alert.svg";
 
-  const handleSubmit = () => {
-    console.log(placa);
-  };
+export default function Entrance() {
+  const [plate, setPlate] = useState("");
+  const [ativo, setAtivo] = useState(false);
+  const [error, setError] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-  const handlePlaca = (value) => {
-    setPlaca(value);
-  };
+  function handleInput(event) {
+    let plateText = event.target.value;
+    setPlate(plateText);
+
+    let plateLength = plate.length + 1;
+
+    if (plateLength >= 3) {
+      setAtivo(true);
+      setError(false);
+    } else if (plateLength < 3) {
+      setAtivo(false);
+    }
+  }
+
+  async function handleSubmit() {
+    if (ativo === false) {
+      return;
+    } else {
+      await axios
+        .post("https://parking-lot-to-pfz.herokuapp.com/parking", {
+          plate: plate,
+        })
+        .then(() => {
+          handleOpenModal();
+          setError(false);
+        })
+        .catch((err) => {
+          setError(true);
+          console.error("Algo deu errado" + err);
+        });
+    }
+  }
+
+  function handleOpenModal() {
+    setIsOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsOpen(false);
+  }
 
   return (
-    <C.Container className="App">
-      <NavbarComp />
-      <center>
-        <C.Flex>
-          <Container className="App-box">
-            <Modal titleModal={titleModal} messageModal={messageModal} />
-            <C.Flex gap="0px">
-              <Link to="/">
-                <Button className="App-button bg-transparent text-dark">
-                  Entrada
-                </Button>
-              </Link>
-              <Link to="/saida">
-                <Button className="App-button bg-transparent text-dark">
-                  Saída
-                </Button>
-              </Link>
-            </C.Flex>
-            <C.CardGeral>
-              <C.CardDesc>
-                <C.Typography textAlign="left">Número da placa:</C.Typography>
-              </C.CardDesc>
-              <Input
-                id="texto"
-                placeholder="AAA-0000"
-                onChange={(value) => handlePlaca(value)}
-              />
-              <Button1 onClick={handleSubmit}>CONFIRMAR ENTRADA</Button1>
-            </C.CardGeral>
-          </Container>
-        </C.Flex>
-      </center>
-    </C.Container>
+    <div className="container">
+      <Header />
+      <Main>
+        <Toggle>
+          <Link to="/" style={LinkStyle}>
+            <ToggleItem ativo={true}>Entrada</ToggleItem>
+          </Link>
+          <Link to="/saida" style={LinkStyle}>
+            <ToggleItem ativo={false}>Saída</ToggleItem>
+          </Link>
+        </Toggle>
+
+        <Label>Número da placa:</Label>
+        <ContainerInput>
+          <Input
+            maxLength={8}
+            placeholder="AAA-000"
+            ativo={error}
+            value={plate}
+            onChange={(event) => handleInput(event)}
+          />
+          <Error ativo={error}>
+            {" "}
+            <img src={Alert} alt="" width={20} />
+            Um erro ocorreu, insira uma placa válida{" "}
+          </Error>
+          <Button ativo={ativo} onClick={handleSubmit}>
+            CONFIRMAR ENTRADA
+          </Button>
+          <Modal
+            isOpen={modalIsOpen}
+            style={ModalStyle}
+            onRequestClose={handleCloseModal}
+          >
+            <img src={Success} alt="" width={60} />
+            <ModalText>Registrado!</ModalText>
+          </Modal>
+        </ContainerInput>
+      </Main>
+    </div>
+    // <div className="container">
+    //
+    //   <main className="main">
+    //     <div className="toggle">
+    //       <Link to="/" className="toggle-item toggle-active">
+    //         Entrada
+    //       </Link>
+    //       <Link to="/exit" className="toggle-item">
+    //         Saída
+    //       </Link>
+    //     </div>
+    //     <div className="container-input">
+    //       <label className="input-title">Número da placa:</label>
+    //       <input type="text"  placeholder="AAA-000" className="input"/>
+    //       <button className="button">Confirmar Entrada</button>
+    //     </div>
+    //   </main>
+    // </div>
   );
 }

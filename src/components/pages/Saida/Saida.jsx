@@ -1,88 +1,203 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import * as C from "../../../styles";
-import "./Saida.css";
-import NavbarComp from "../../navbar";
-import { Button, Container } from "react-bootstrap";
-import { Input } from "../../input";
-import { Button1 } from "../../button";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Modal } from "../../modal";
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function App() {
-  const [placa, setPlaca] = useState([]);
-  const [titleModal, settitleModal] = useState("mensagem");
-  const [messageModal, setmessageModal] = useState("mensagem2");
-  const [open, setOpen] = useState(false);
+import Modal from "react-modal";
+import {
+  Container,
+  Toggle,
+  ToggleItem,
+  LinkStyle,
+  ContainerInput,
+  Label,
+  Input,
+  ButtonOut,
+  ButtonPayment,
+  Error,
+  ModalStyle,
+  ModalText,
+  History,
+  Back,
+  ModalTitle,
+  ImageModal,
+  SuccessText,
+} from "./styles";
+import Header from "../../../components/Header";
+import Success from "../../../assets/round-done-button.svg";
+import Alert from "../../../assets/ic_alert.svg";
 
-  const handleSubmit = () => {
-    console.log(placa);
-  };
+export default function Saida() {
+  const [plate, setplate] = useState("");
+  const [ativo, setAtivo] = useState(false);
+  const [error, setError] = useState(false);
+  const [outlIsOpen, setOutIsOpen] = useState(false);
+  const [paymentIsOpen, setPaymentIsOpen] = useState(false);
+  let navigate = useNavigate();
+  const [success, setSuccessIsOpen] = useState(false);
+  const [successText, setSuccessText] = useState("");
 
-  const handlePlaca = (value) => {
-    setPlaca(value);
-  };
+  function handleInput(event) {
+    let plateText = event.target.value;
+    setplate(plateText);
+
+    let plateLength = plate.length + 1;
+
+    if (plateLength >= 3) {
+      setAtivo(true);
+    } else if (plateLength < 3) {
+      setAtivo(false);
+    }
+  }
+
+  async function handleOut() {
+    if (ativo === false) {
+      return;
+    } else {
+      await axios
+        .post(`https://parking-lot-to-pfz.herokuapp.com/parking/${plate}/out`)
+        .then(() => {
+          setError(false);
+          setSuccessText("SAÍDA LIBERADA");
+          setSuccessIsOpen(true);
+        })
+        .catch((error) => {
+          setError(true);
+          handleCloseModal();
+          console.error("ops! ocorreu um erro" + error);
+        });
+    }
+  }
+
+  async function handlePayment() {
+    if (ativo === false) {
+      return;
+    } else {
+      await axios
+        .post(`https://parking-lot-to-pfz.herokuapp.com/parking/${plate}/pay`)
+        .then(() => {
+          setError(false);
+          setSuccessText("PAGO!");
+          setSuccessIsOpen(true);
+        })
+        .catch((error) => {
+          setError(true);
+          handleCloseModal();
+          console.error("ops! ocorreu um erro" + error);
+        });
+    }
+  }
+
+  async function handleHistory() {
+    if (ativo === false) {
+      setError(true);
+      return;
+    } else {
+      await axios
+        .get(`https://parking-lot-to-pfz.herokuapp.com/parking/${plate}`)
+        .then((res) => {
+          setError(false);
+          navigate(`/data?plate=${plate}`);
+        })
+        .catch((error) => {
+          setError(true);
+          console.error("ops! ocorreu um erro" + error);
+        });
+    }
+  }
+
+  function handleOpenPayModal() {
+    if (ativo === false) {
+      return;
+    }
+    setPaymentIsOpen(true);
+  }
+
+  function handleOpenOutModal() {
+    if (ativo === false) {
+      return;
+    }
+    setOutIsOpen(true);
+  }
+
+  function handleCloseModal() {
+    setOutIsOpen(false);
+    setPaymentIsOpen(false);
+    setSuccessIsOpen(false);
+  }
 
   return (
-    <C.Container className="App">
-      <NavbarComp />
-      <center>
-        <C.Flex>
-          <Container className="App-box">
-            <Modal
-              open={open}
-              titleModal={titleModal}
-              messageModal={messageModal}
-              handleOpenModal={() => setOpen(false)}
-            />
-            <C.Flex gap="0px">
-              <Link to="/">
-                <Button className="App-button bg-transparent text-dark">
-                  Entrada
-                </Button>
-              </Link>
-              <Link to="/saida">
-                <Button className="App-button bg-transparent text-dark border-bottom">
-                  Saída
-                </Button>
-              </Link>
-            </C.Flex>
-            <C.CardGeral>
-              <C.CardDesc>
-                <C.Typography textAlign="left">Número da placa:</C.Typography>
-              </C.CardDesc>
-              <Input
-                value={placa}
-                id="texto"
-                placeholder="AAA-0000"
-                onChange={(value) => handlePlaca(value)}
-              />
-              <Button1 bgColor="#A769B2" onClick={() => setOpen(true)}>
-                PAGAMENTO
-              </Button1>
-              <Button1
-                color="#A769B2"
-                border="2px solid #A769B2"
-                bgColor="transparent"
-                onClick={handleSubmit}
-              >
-                SAÍDA
-              </Button1>
-              <C.Flex>
-                <Link to="/data" placa={placa}>
-                  <C.Rules
-                    size="15px"
-                    color="#00BCD4"
-                    onClick={() => setOpen(true)}
-                  >
-                    VER HISTÓRICO
-                  </C.Rules>
-                </Link>
-              </C.Flex>
-            </C.CardGeral>
-          </Container>
-        </C.Flex>
-      </center>
-    </C.Container>
+    <div className="container">
+      <Header />
+      <Container>
+        <Toggle>
+          <Link to="/" style={LinkStyle}>
+            <ToggleItem ativo={false}>Entrada</ToggleItem>
+          </Link>
+          <Link to="/saida" style={LinkStyle}>
+            <ToggleItem ativo={true}>Saída</ToggleItem>
+          </Link>
+        </Toggle>
+
+        <Label>Número da plate:</Label>
+        <ContainerInput>
+          <Input
+            maxLength={8}
+            placeholder="AAA-000"
+            value={plate}
+            onChange={(event) => handleInput(event)}
+          />
+          <Error ativo={error}>
+            {" "}
+            <img src={Alert} alt="" width={20} />
+            Um erro ocorreu, insira uma plate válida{" "}
+          </Error>
+
+          <ButtonPayment ativo={ativo} onClick={handleOpenPayModal}>
+            PAGAMENTO
+          </ButtonPayment>
+          <ButtonOut ativo={ativo} onClick={handleOpenOutModal}>
+            SAÍDA
+          </ButtonOut>
+          <History onClick={handleHistory}>VER HISTORICO</History>
+
+          <Modal
+            ariaHideApp={false}
+            isOpen={paymentIsOpen}
+            style={ModalStyle}
+            onRequestClose={handleCloseModal}
+          >
+            <ModalText>Confirma o pagamento da plate abaixo?</ModalText>
+            <ModalTitle>{plate}</ModalTitle>
+            <ButtonPayment ativo={ativo} onClick={handlePayment}>
+              PAGAMENTO
+            </ButtonPayment>
+            <Back onClick={handleCloseModal}>Voltar</Back>
+          </Modal>
+
+          <Modal
+            ariaHideApp={false}
+            isOpen={outlIsOpen}
+            style={ModalStyle}
+            onRequestClose={handleCloseModal}
+          >
+            <ModalText>Confirma a saída do veiculo da plate abaixo?</ModalText>
+            <ModalTitle>{plate}</ModalTitle>
+            <ButtonPayment ativo={ativo} onClick={handleOut}>
+              Liberar Saída
+            </ButtonPayment>
+            <Back onClick={handleCloseModal}>Voltar</Back>
+          </Modal>
+
+          <Modal
+            isOpen={success}
+            style={ModalStyle}
+            onRequestClose={handleCloseModal}
+          >
+            <ImageModal src={Success} alt="" />
+            <SuccessText>{successText}</SuccessText>
+          </Modal>
+        </ContainerInput>
+      </Container>
+    </div>
   );
 }
