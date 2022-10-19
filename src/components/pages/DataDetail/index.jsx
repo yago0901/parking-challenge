@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 import Header from "../../../components/Header";
-import {
-  Main,
-  Plate,
-  BackDetail,
-  SpanDetail,
-  DataText,
-  Container,
-  Loading,
-  LoadingText,
-} from "./styles";
+import * as C from "./styles";
 import Seta from "../../../assets/arrow_l.svg";
 import LoadingImage from "../../../assets/loading.svg";
 
@@ -33,60 +24,59 @@ export default function DataDetail() {
           alert("Insira um dado valido");
           console.error("Algo deu errado" + err);
         });
-      console.log(res);
       setCarsData(res.data);
     };
     getCars();
   }, []);
 
   if (carsData) {
-    return carsData.map((car) => {
+    return carsData.map((car, index) => {
       if (car.reservation === paramReserv && car.paid === true) {
         return (
-          <Container>
+          <C.Container key={index}>
             <Header />
-            <Main>
+            <C.Main>
               <Link to={`/data?plate=${paramPlate}`}>
-                <BackDetail src={Seta} />
+                <C.BackDetail src={Seta} />
               </Link>
-              <SpanDetail>Placa</SpanDetail>
-              <Plate>{car.plate}</Plate>
-              <SpanDetail>Status</SpanDetail>
-              <DataText>Saiu</DataText>
-              <SpanDetail>Tempo Atual</SpanDetail>
-              <DataText>{car.time}</DataText>
-              <SpanDetail>Pagamento</SpanDetail>
-              <DataText>Pago</DataText>
-            </Main>
-          </Container>
+              <C.SpanDetail>Placa</C.SpanDetail>
+              <C.Plate>{car.plate}</C.Plate>
+              <C.SpanDetail>Status</C.SpanDetail>
+              <C.DataText>Saiu</C.DataText>
+              <C.SpanDetail>Tempo Atual</C.SpanDetail>
+              <C.DataText>{car.time}</C.DataText>
+              <C.SpanDetail>Pagamento</C.SpanDetail>
+              <C.DataText>Pago</C.DataText>
+            </C.Main>
+          </C.Container>
         );
       } else if (car.reservation === paramReserv && car.paid === false) {
         return (
-          <Container>
+          <C.Container key={index}>
             <Header />
-            <Main>
+            <C.Main>
               <Link to={`/data?plate=${paramPlate}`}>
-                <BackDetail src={Seta} />
+                <C.BackDetail src={Seta} />
               </Link>
-              <SpanDetail>Placa</SpanDetail>
-              <Plate>{car.plate}</Plate>
-              <SpanDetail>Status</SpanDetail>
-              <DataText>Estacionado</DataText>
-              <SpanDetail>Tempo Atual</SpanDetail>
-              <DataText>{car.time}</DataText>
-              <SpanDetail>Pagamento</SpanDetail>
-              <DataText>-</DataText>
-            </Main>
-          </Container>
+              <C.SpanDetail>Placa</C.SpanDetail>
+              <C.Plate>{car.plate}</C.Plate>
+              <C.SpanDetail>Status</C.SpanDetail>
+              <C.DataText>Estacionado</C.DataText>
+              <C.SpanDetail>Tempo Atual</C.SpanDetail>
+              <C.DataText>{car.time}</C.DataText>
+              <C.SpanDetail>Pagamento</C.SpanDetail>
+              <C.DataText>-</C.DataText>
+            </C.Main>
+          </C.Container>
         );
       }
     });
   } else {
     return (
-      <Loading data-testid="loading">
+      <C.Loading data-testid="loading">
         <img src={LoadingImage} alt="" />
-        <LoadingText>Carregando..</LoadingText>
-      </Loading>
+        <C.LoadingText>Carregando..</C.LoadingText>
+      </C.Loading>
     );
   }
 }

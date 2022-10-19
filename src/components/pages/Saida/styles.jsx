@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
+export const ContainerGeral = styled.div`
+  width: 410px;
+`;
+
 export const Container = styled.div`
   margin-top: 41px;
   background-color: #fff;
 `;
 
-export const Toggle = styled.div`
+export const Botoes = styled.div`
   display: flex;
   background: #f2f2f2;
 `;
@@ -16,7 +20,7 @@ export const LinkStyle = {
   flex: "1",
 };
 
-export const ToggleItem = styled.div`
+export const Botao = styled.div`
   background: ${({ ativo }) => (ativo ? "#fff" : "none")};
   border-bottom: 3px solid transparent;
   border-color: ${({ ativo }) => (ativo ? "#4dd0e1" : "none")};
@@ -34,7 +38,7 @@ export const ContainerInput = styled.div`
   padding: 7px 16px;
 `;
 
-export const Label = styled.label`
+export const Text = styled.label`
   display: block;
   font-size: 1rem;
   color: #9b9b9b;

@@ -3,25 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import Modal from "react-modal";
-import {
-  Container,
-  Toggle,
-  ToggleItem,
-  LinkStyle,
-  ContainerInput,
-  Label,
-  Input,
-  ButtonOut,
-  ButtonPayment,
-  Error,
-  ModalStyle,
-  ModalText,
-  History,
-  Back,
-  ModalTitle,
-  ImageModal,
-  SuccessText,
-} from "./styles";
+import * as C from "./styles";
 import Header from "../../../components/Header";
 import Success from "../../../assets/round-done-button.svg";
 import Alert from "../../../assets/ic_alert.svg";
@@ -126,78 +108,80 @@ export default function Saida() {
   }
 
   return (
-    <div className="container">
+    <C.ContainerGeral>
       <Header />
-      <Container>
-        <Toggle>
-          <Link to="/" style={LinkStyle}>
-            <ToggleItem ativo={false}>Entrada</ToggleItem>
+      <C.Container>
+        <C.Botoes>
+          <Link to="/" style={C.LinkStyle}>
+            <C.Botao ativo={false}>Entrada</C.Botao>
           </Link>
-          <Link to="/saida" style={LinkStyle}>
-            <ToggleItem ativo={true}>Saída</ToggleItem>
+          <Link to="/saida" style={C.LinkStyle}>
+            <C.Botao ativo={true}>Saída</C.Botao>
           </Link>
-        </Toggle>
+        </C.Botoes>
 
-        <Label>Número da plate:</Label>
-        <ContainerInput>
-          <Input
+        <C.Text>Número da plate:</C.Text>
+        <C.ContainerInput>
+          <C.Input
             maxLength={8}
             placeholder="AAA-000"
             value={plate}
             onChange={(event) => handleInput(event)}
           />
-          <Error ativo={error}>
+          <C.Error ativo={error}>
             {" "}
             <img src={Alert} alt="" width={20} />
             Um erro ocorreu, insira uma plate válida{" "}
-          </Error>
+          </C.Error>
 
-          <ButtonPayment ativo={ativo} onClick={handleOpenPayModal}>
+          <C.ButtonPayment ativo={ativo} onClick={handleOpenPayModal}>
             PAGAMENTO
-          </ButtonPayment>
-          <ButtonOut ativo={ativo} onClick={handleOpenOutModal}>
+          </C.ButtonPayment>
+          <C.ButtonOut ativo={ativo} onClick={handleOpenOutModal}>
             SAÍDA
-          </ButtonOut>
-          <History onClick={handleHistory}>VER HISTORICO</History>
+          </C.ButtonOut>
+          <C.History onClick={handleHistory}>VER HISTORICO</C.History>
 
           <Modal
             ariaHideApp={false}
             isOpen={paymentIsOpen}
-            style={ModalStyle}
+            style={C.ModalStyle}
             onRequestClose={handleCloseModal}
           >
-            <ModalText>Confirma o pagamento da plate abaixo?</ModalText>
-            <ModalTitle>{plate}</ModalTitle>
-            <ButtonPayment ativo={ativo} onClick={handlePayment}>
+            <C.ModalText>Confirma o pagamento da plate abaixo?</C.ModalText>
+            <C.ModalTitle>{plate}</C.ModalTitle>
+            <C.ButtonPayment ativo={ativo} onClick={handlePayment}>
               PAGAMENTO
-            </ButtonPayment>
-            <Back onClick={handleCloseModal}>Voltar</Back>
+            </C.ButtonPayment>
+            <C.Back onClick={handleCloseModal}>Voltar</C.Back>
           </Modal>
 
           <Modal
             ariaHideApp={false}
             isOpen={outlIsOpen}
-            style={ModalStyle}
+            style={C.ModalStyle}
             onRequestClose={handleCloseModal}
           >
-            <ModalText>Confirma a saída do veiculo da plate abaixo?</ModalText>
-            <ModalTitle>{plate}</ModalTitle>
-            <ButtonPayment ativo={ativo} onClick={handleOut}>
+            <C.ModalText>
+              Confirma a saída do veiculo da plate abaixo?
+            </C.ModalText>
+            <C.ModalTitle>{plate}</C.ModalTitle>
+            <C.ButtonPayment ativo={ativo} onClick={handleOut}>
               Liberar Saída
-            </ButtonPayment>
-            <Back onClick={handleCloseModal}>Voltar</Back>
+            </C.ButtonPayment>
+            <C.Back onClick={handleCloseModal}>Voltar</C.Back>
           </Modal>
 
           <Modal
             isOpen={success}
-            style={ModalStyle}
+            style={C.ModalStyle}
             onRequestClose={handleCloseModal}
           >
-            <ImageModal src={Success} alt="" />
-            <SuccessText>{successText}</SuccessText>
+            <C.ImageModal src={Success} alt="" />
+            <C.SuccessText>{successText}</C.SuccessText>
           </Modal>
-        </ContainerInput>
-      </Container>
-    </div>
+        </C.ContainerInput>
+      </C.Container>
+    </C.ContainerGeral>
   );
 }

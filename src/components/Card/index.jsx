@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { CardContainer, CardData, CardTitle, LinkStyle } from "./styles";
+import { Container, CardData, CardTitle, LinkStyle } from "./styles";
 
 export default function Card({ plate, paid, time, reservation }) {
   if (paid === true) {
@@ -10,7 +10,7 @@ export default function Card({ plate, paid, time, reservation }) {
         to={`/data-plate?plate=${plate}&reservation=${reservation}`}
         style={LinkStyle}
       >
-        <CardContainer id="card">
+        <Container id="card">
           <div>
             <CardTitle>Tempo Atual</CardTitle>
             <CardData>{time}</CardData>
@@ -19,7 +19,7 @@ export default function Card({ plate, paid, time, reservation }) {
             <CardTitle>Pagamento</CardTitle>
             <CardData>Pago</CardData>
           </div>
-        </CardContainer>
+        </Container>
       </Link>
     );
   } else if (paid === false) {
@@ -28,7 +28,7 @@ export default function Card({ plate, paid, time, reservation }) {
         to={`/data-plate?plate=${plate}&reservation=${reservation}`}
         style={LinkStyle}
       >
-        <CardContainer data-testid="card">
+        <Container data-testid="card">
           <div>
             <CardTitle>Tempo Atual</CardTitle>
             <CardData>{time}</CardData>
@@ -37,7 +37,7 @@ export default function Card({ plate, paid, time, reservation }) {
             <CardTitle>Pagamento</CardTitle>
             <CardData>-</CardData>
           </div>
-        </CardContainer>
+        </Container>
       </Link>
     );
   } else {

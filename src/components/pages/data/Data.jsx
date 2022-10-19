@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  DataBg,
-  Plate,
-  BackDetail,
-  PlateDiv,
-  Loading,
-  LoadingText,
-  LinkStyle,
-} from "./styles";
+import * as C from "./styles";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -40,14 +32,14 @@ export default function Data() {
 
   if (carsData) {
     return (
-      <div className="container">
-        <DataBg>
+      <C.Container>
+        <C.ContainerData>
           <Header />
-          <Link to={`/saida`} style={LinkStyle}>
-            <PlateDiv>
-              <BackDetail src={BackArrow} />
-              <Plate> Placa {carsData[0].plate}</Plate>
-            </PlateDiv>
+          <Link to={`/saida`} style={C.LinkStyle}>
+            <C.PlacaContainer>
+              <C.SetaVoltar src={BackArrow} />
+              <C.Placa> Placa {carsData[0].plate}</C.Placa>
+            </C.PlacaContainer>
           </Link>
           <ul>
             {carsData.map((car, index) => (
@@ -60,15 +52,15 @@ export default function Data() {
               />
             ))}
           </ul>
-        </DataBg>
-      </div>
+        </C.ContainerData>
+      </C.Container>
     );
   } else {
     return (
-      <Loading data-testid="loading">
+      <C.Loading data-testid="loading">
         <img src={LoadingImage} alt="" />
-        <LoadingText>Carregando..</LoadingText>
-      </Loading>
+        <C.LoadingText>Carregando..</C.LoadingText>
+      </C.Loading>
     );
   }
 }

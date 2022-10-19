@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import LogoImage from "../../assets/avatar_parking.svg";
+import Logo from "../img/avatar_parking.png";
 import MenuImage from "../../assets/menu.svg";
 import CloseImage from "../../assets/close.svg";
 
@@ -25,7 +25,7 @@ export default function Header() {
   }
   return (
     <HeaderContainer>
-      <img src={LogoImage} onClick={handleHome} alt="Logo Parking" />
+      <img src={Logo} onClick={handleHome} alt="Logo Parking" />
       <LogoMenu
         src={MenuImage}
         onClick={showSidebar}

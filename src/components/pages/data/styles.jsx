@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
-export const DataBg = styled.div`
+export const Container = styled.div`
+  width: 100%;
+`;
+
+export const ContainerData = styled.div`
   background-color: #fff;
 `;
 
-export const Plate = styled.span`
+export const Placa = styled.span`
   font-size: 1.5rem;
   color: #00bcd4;
   font-weight: 500;
 `;
 
-export const BackDetail = styled.img`
+export const SetaVoltar = styled.img`
   src: src;
 `;
 
-export const PlateDiv = styled.div`
+export const PlacaContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
