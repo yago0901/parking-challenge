@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import * as C from "./styles";
 import Header from "../../../components/Header";
-import Success from "../../../assets/round-done-button.svg";
-import Alert from "../../../assets/ic_alert.svg";
+import Success from "../../img/round-done-button.svg";
+import Alert from "../../img/ic_alert.svg";
 
 export default function Saida() {
   const [plate, setplate] = useState("");

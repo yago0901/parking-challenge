@@ -16,6 +16,14 @@
 
 Parking 🚧 Challenge - é um projeto que testa as habilidades de Front-End indo desde a crição das páginas até a comunicação com a api.
 
+Dificuldades:
+1°= Passar dados entre componentes Feito
+2°= Ajuste adequado sem o Boostrap Feito
+3°= Ajustes de tamanho responsivo Feito
+4°= Configuração da API com AXIOS Feito
+
+Mesmo com dificuldades adorei fazer este projeto e mostrar minha capacidade.
+Para passar por todos obstáculos tenho colegas que sempre me apoiaram e me ajudaram tirando dúvidas.
 Projeto com prazo de 7 dias.
 
 ---

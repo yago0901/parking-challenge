@@ -4,8 +4,8 @@ import * as C from "./styles";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import BackArrow from "../../../assets/arrow_l.svg";
-import LoadingImage from "../../../assets/loading.svg";
+import Seta from "../../img/arrow_l.svg";
+import LoadingImage from "../../img/loading.svg";
 
 import Header from "../../../components/Header";
 import Card from "../../../components/Card";
@@ -23,7 +23,7 @@ export default function Data() {
         .get(`https://parking-lot-to-pfz.herokuapp.com/parking/${paramPlate}`)
         .catch((err) => {
           alert("insira um dado valido");
-          console.error("ops! ocorreu um erro" + err);
+          console.error("Algo deu errado" + err);
         });
       setCarsData(res.data);
     };
@@ -37,7 +37,7 @@ export default function Data() {
           <Header />
           <Link to={`/saida`} style={C.LinkStyle}>
             <C.PlacaContainer>
-              <C.SetaVoltar src={BackArrow} />
+              <C.SetaVoltar src={Seta} />
               <C.Placa> Placa {carsData[0].plate}</C.Placa>
             </C.PlacaContainer>
           </Link>
@@ -57,7 +57,7 @@ export default function Data() {
     );
   } else {
     return (
-      <C.Loading data-testid="loading">
+      <C.Loading data-testid="Loading">
         <img src={LoadingImage} alt="" />
         <C.LoadingText>Carregando..</C.LoadingText>
       </C.Loading>

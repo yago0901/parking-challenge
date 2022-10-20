@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "../../../components/Header";
 import * as C from "./styles";
-import Seta from "../../../assets/arrow_l.svg";
-import LoadingImage from "../../../assets/loading.svg";
+import Seta from "../../img/arrow_l.svg";
+import LoadingImage from "../../img/loading.svg";
 
 export default function DataDetail() {
   const [carsData, setCarsData] = useState();
@@ -74,7 +74,7 @@ export default function DataDetail() {
   } else {
     return (
       <C.Loading data-testid="loading">
-        <img src={LoadingImage} alt="" />
+        <img src={LoadingImage} alt="Imagem de loading" />
         <C.LoadingText>Carregando..</C.LoadingText>
       </C.Loading>
     );

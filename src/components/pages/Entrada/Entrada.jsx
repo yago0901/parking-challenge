@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import * as C from "./styles";
 import Header from "../../../components/Header";
-import Success from "../../../assets/round-done-button.svg";
-import Alert from "../../../assets/ic_alert.svg";
+import Success from "../../img/round-done-button.svg";
+import Alert from "../../img/ic_alert.svg";
 
 export default function Entrance() {
   const [plate, setPlate] = useState("");
@@ -80,7 +80,7 @@ export default function Entrance() {
           <C.Error ativo={error}>
             {" "}
             <img src={Alert} alt="" width={20} />
-            Um erro ocorreu, insira uma placa válida{" "}
+            Erro! Insira uma placa válida{" "}
           </C.Error>
           <C.Button ativo={ativo} onClick={handleSubmit}>
             CONFIRMAR ENTRADA

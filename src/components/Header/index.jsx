@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../img/avatar_parking.png";
-import MenuImage from "../../assets/menu.svg";
-import CloseImage from "../../assets/close.svg";
+import MenuImage from "../img/menu.svg";
+import CloseImage from "../img/close.svg";
 
 import { HeaderContainer, NavMenu, Close, LogoMenu, Link } from "./styles";
 
