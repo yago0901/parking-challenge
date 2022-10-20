@@ -72,7 +72,7 @@ export default function Entrance() {
         <C.ContainerInput>
           <C.Input
             maxLength={8}
-            placeholder="AAA-000"
+            placeholder="AAA-0000"
             ativo={error}
             value={plate}
             onChange={(event) => handleInput(event)}
