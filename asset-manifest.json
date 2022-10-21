@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/parking-challenge/static/css/main.c59cc657.css",
-    "main.js": "/parking-challenge/static/js/main.8b66a7aa.js",
+    "main.js": "/parking-challenge/static/js/main.70192cd5.js",
     "static/media/loading.svg": "/parking-challenge/static/media/loading.b8cf191b649b0600a02018df7a13f8ce.svg",
     "index.html": "/parking-challenge/index.html",
     "static/media/ic_alert.svg": "/parking-challenge/static/media/ic_alert.61ef29828d0715bbbdb05a4f5455cc0d.svg",
@@ -10,10 +10,10 @@
     "static/media/close.svg": "/parking-challenge/static/media/close.3d74fb09c58f1caf093ce2d38b888204.svg",
     "static/media/arrow_l.svg": "/parking-challenge/static/media/arrow_l.2b62d3bfcf880dcde915a955221a9bcf.svg",
     "main.c59cc657.css.map": "/parking-challenge/static/css/main.c59cc657.css.map",
-    "main.8b66a7aa.js.map": "/parking-challenge/static/js/main.8b66a7aa.js.map"
+    "main.70192cd5.js.map": "/parking-challenge/static/js/main.70192cd5.js.map"
   },
   "entrypoints": [
     "static/css/main.c59cc657.css",
-    "static/js/main.8b66a7aa.js"
+    "static/js/main.70192cd5.js"
   ]
 }
