@@ -45,7 +45,7 @@ export default function Saida() {
         .catch((error) => {
           setError(true);
           handleCloseModal();
-          console.error("ops! ocorreu um erro" + error);
+          console.error("Algo deu errado na saida" + error);
         });
     }
   }
@@ -124,7 +124,7 @@ export default function Saida() {
         <C.ContainerInput>
           <C.Input
             maxLength={8}
-            placeholder="AAA-000"
+            placeholder="AAA-0000"
             value={plate}
             onChange={(event) => handleInput(event)}
           />

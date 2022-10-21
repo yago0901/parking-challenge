@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Entrada from "./components/pages/Entrada/Entrada";
 import Saida from "./components/pages/Saida/Saida";
 import Data from "./components/pages/Data/Data";

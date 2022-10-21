@@ -12,8 +12,8 @@ import Card from "../../../components/Card";
 
 export default function Data() {
   const [carsData, setCarsData] = useState();
-  const urlParams = new URLSearchParams(window.location.search);
-  const paramPlate = urlParams.get("plate");
+  //const urlParams = new URLSearchParams(window.location.search);
+  //const paramPlate = urlParams.get("plate");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,9 +22,10 @@ export default function Data() {
       let res = await axios
         .get(`https://parking-lot-to-pfz.herokuapp.com/parking/${paramPlate}`)
         .catch((err) => {
-          alert("insira um dado valido");
+          alert(`insira um dado valido ${paramPlate} `);
           console.error("Algo deu errado" + err);
         });
+      console.log(res);
       setCarsData(res.data);
     };
     getCars();
