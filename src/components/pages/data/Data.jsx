@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as C from "./styles";
+import { useQuery } from "../../../hooks/useQuery";
 
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -12,24 +13,26 @@ import Card from "../../../components/Card";
 
 export default function Data() {
   const [carsData, setCarsData] = useState();
-  //const urlParams = new URLSearchParams(window.location.search);
-  //const paramPlate = urlParams.get("plate");
+  const query = useQuery();
+  const plate = query.get("plate");
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramPlate = urlParams.get("plate");
-    let getCars = async () => {
-      let res = await axios
-        .get(`https://parking-lot-to-pfz.herokuapp.com/parking/${paramPlate}`)
-        .catch((err) => {
-          alert(`insira um dado valido ${paramPlate} `);
-          console.error("Algo deu errado" + err);
-        });
-      console.log(res);
-      setCarsData(res.data);
-    };
-    getCars();
-  }, []);
+    //const urlParams = new URLSearchParams(window.location.search);
+    //const paramPlate = urlParams.get("plate");
+    if (plate) {
+      let getCars = async () => {
+        let res = await axios
+          .get(`https://parking-lot-to-pfz.herokuapp.com/parking/${plate}`)
+          .catch((err) => {
+            alert(`insira um dado valido ${plate} `);
+            console.error("Algo deu errado" + err);
+          });
+        console.log(plate);
+        setCarsData(res.data);
+      };
+      getCars();
+    }
+  }, [plate]);
 
   if (carsData) {
     return (
