@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Entrada from "./components/pages/Entrada/Entrada";
 import Saida from "./components/pages/Saida/Saida";
 import Data from "./components/pages/Data/Data";
@@ -7,7 +7,7 @@ import DataDetail from "./components/pages/DataDetail";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" exact element={<Entrada />} />
         <Route path="/saida" exact element={<Saida />} />
