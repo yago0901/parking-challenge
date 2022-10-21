@@ -58,7 +58,7 @@ export default function Data() {
     );
   } else {
     return (
-      <C.Loading data-testid="Loading">
+      <C.Loading data-testid="loading">
         <img src={LoadingImage} alt="" />
         <C.LoadingText>Carregando..</C.LoadingText>
       </C.Loading>
