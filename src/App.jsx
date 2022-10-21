@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Entrada from "./components/pages/Entrada/Entrada";
 import Saida from "./components/pages/Saida/Saida";
-import Data from "./components/pages/Data/Data";
+import Data from "./components/pages/Data";
 import DataDetail from "./components/pages/DataDetail";
 
 export default function App() {
