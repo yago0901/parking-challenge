@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import Seta from "../../img/arrow_l.svg";
 import LoadingImage from "../../img/loading.svg";
 
-import Header from "../../../components/Header";
-import Card from "../../../components/Card";
+import Header from "../../Header";
+import Card from "../../Card";
 
 export default function Data() {
   const [carsData, setCarsData] = useState();
